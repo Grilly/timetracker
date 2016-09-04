@@ -11,6 +11,8 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var gutil = require('gulp-util');
 var babelify = require('babelify');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
 // External dependencies you do not want to rebundle while developing,
 // but include in your application deployment
@@ -23,8 +25,20 @@ var scriptsCount = 0;
 
 // Gulp tasks
 // ----------------------------------------------------------------------------
+gulp.task('startBrowserSync', function() {
+	browserSync({
+    notify: false,
+    logPrefix: 'BS',
+    // Run as an https by uncommenting 'https: true'
+    // Note: this uses an unsigned certificate which on first access
+    //       will present a certificate warning in the browser.
+    // https: true,
+    server: "./"
+  });
+});
+
 gulp.task('scripts', function () {
-    bundleApp(false);
+  bundleApp(false);
 });
 
 gulp.task('deploy', function (){
@@ -38,7 +52,7 @@ gulp.task('watch', function () {
 // When running 'gulp' on the terminal this task will fire.
 // It will start watching for changes in every .js file.
 // If there's a change, the task 'scripts' defined above will fire.
-gulp.task('default', ['scripts','watch']);
+gulp.task('default', ['startBrowserSync','scripts','watch']);
 
 // Private Functions
 // ----------------------------------------------------------------------------
@@ -57,9 +71,9 @@ function bundleApp(isProduction) {
   	if (!isProduction && scriptsCount === 1){
   		// create vendors.js for dev environment.
   		browserify({
-			require: dependencies,
-			debug: true
-		})
+				require: dependencies,
+				debug: true
+			})
 			.bundle()
 			.on('error', gutil.log)
 			.pipe(source('vendors.js'))
@@ -67,8 +81,8 @@ function bundleApp(isProduction) {
   	}
   	if (!isProduction){
   		// make the dependencies external so they dont get bundled by the 
-		// app bundler. Dependencies are already bundled in vendor.js for
-		// development environments.
+			// app bundler. Dependencies are already bundled in vendor.js for
+			// development environments.
   		dependencies.forEach(function(dep){
   			appBundler.external(dep);
   		})
@@ -80,5 +94,8 @@ function bundleApp(isProduction) {
 	    .bundle()
 	    .on('error',gutil.log)
 	    .pipe(source('bundle.js'))
-	    .pipe(gulp.dest('./web/js/'));
+	    .pipe(gulp.dest('./web/js/'))
+	    .on('end', function() {
+	    	reload();
+	    });
 }
