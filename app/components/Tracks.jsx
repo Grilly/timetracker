@@ -12,7 +12,6 @@ class Tracks extends React.Component {
   }
   render() {
     const { day } = this.props;
-    console.log(this.props);
     const { date, tracks } = day;
     return (
       <div>
