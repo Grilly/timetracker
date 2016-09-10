@@ -17,8 +17,22 @@ class Tracks extends React.Component {
       <div>
         <h2>{date}</h2>
         <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Description</th>
+            </tr>
+          </thead>
           <tbody>
             {Object.keys(tracks).map(this.renderTrack)}
+            <tr>
+              <td>&nbsp;</td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+            </tr>
           </tbody>
         </table>
       </div>
