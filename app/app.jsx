@@ -2,9 +2,5 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './components/App.jsx';
-import tracks from './data/tracks';
 
-ReactDOM.render(
-  <App tracks={tracks} name="Michael Westrich" age={24} bio="My biography" />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));

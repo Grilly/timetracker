@@ -1,15 +1,42 @@
 import React from 'react';
 
-class App extends React.PureComponent {
+import Tracks from './Tracks.jsx';
+
+import days from '../data/data.js';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      days: [],
+    };
+    this.loadSampleData = this.loadSampleData.bind(this);
+  }
+  getDayByDate(date) {
+    return this.state.days.filter((day) => {
+      if (day.date === date) return day;
+      return undefined;
+    });
+  }
+  loadSampleData() {
+    this.setState({ days });
+  }
+  renderDay(date) {
+    const day = this.getDayByDate(date);
+    if (typeof day[0] !== 'undefined') {
+      return <Tracks day={day[0]} />;
+    }
+    return '';
+  }
   render() {
-    const { name, age, bio, tracks } = this.props;
     return (
       <div>
-        <h2>{name}</h2>
-        <h4>{age}</h4>
-        <h4>{bio}</h4>
-        <br />
-        <div>Id of track 0: "{tracks[0].id}"</div>
+        <h1>Timetracker</h1>
+        <h2>All Days</h2>
+        { this.renderDay(20160908) }
+        { this.renderDay(20160909) }
+        { this.renderDay(20160910) }
+        <button onClick={this.loadSampleData}>loadSampleData</button>
       </div>
     );
   }
