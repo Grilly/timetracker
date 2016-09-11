@@ -30,7 +30,7 @@ class Day extends React.Component {
           <Link to={`/days/${date}`}>{date}</Link>
         </h2>
         <div>
-          <Tracks day={day} tracks={this.props.tracks} />
+          <Tracks {...this.props} day={day} />
           <Statistics day={day} tracks={this.props.tracks} />
         </div>
       </div>

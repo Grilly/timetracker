@@ -5,6 +5,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(...props);
     this.renderChildren = this.renderChildren.bind(this);
 
     // this.addTrack = this.addTrack.bind(this);
@@ -26,7 +27,7 @@ class App extends React.Component {
   // <Days days={this.state.days} addTrack={this.addTrack} />
   renderChildren(props) {
     return React.Children.map(this.props.children, (child) =>
-      React.cloneElement(child, { days: props.days, tracks: props.tracks })
+      React.cloneElement(child, props)
     );
   }
   render() {

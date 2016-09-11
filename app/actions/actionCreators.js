@@ -1,8 +1,9 @@
-export function addTrack(date, track) {
+export function addTrack(date, newTrack) {
+  console.log(date, newTrack);
   return {
     type: 'ADD_TRACK',
     date,
-    track,
+    newTrack,
   };
 }
 

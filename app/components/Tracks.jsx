@@ -6,18 +6,17 @@ class Tracks extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderTrack = this.renderTrack.bind(this);
   }
   handleSubmit(e) {
     e.preventDefault();
-    const newTrack = {
-      id: 87,
-      startTime: this.inputStartTime.value,
-      endTime: this.inputEndTime.value,
-      description: this.inputDescription.value,
-    };
-    const { addTrack } = this.props;
-    addTrack(this.props.day.date, newTrack);
-    return;
+    const startTime = this.inputStartTime.value;
+    const endTime = this.inputEndTime.value;
+    const description = this.inputDescription.value;
+    this.props.addTrack(this.props.day.date, { startTime, endTime, description });
+  }
+  renderTrack(track, index) {
+    return <Track {...this.props} track={track} key={index} />;
   }
   render() {
     return (
@@ -34,10 +33,7 @@ class Tracks extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {
-                this.props.tracks[this.props.day.code].map((track, index) =>
-                  <Track track={track} key={index} />)
-              }
+              {this.props.tracks[this.props.day.code].map(this.renderTrack)}
               <tr>
                 <td>&nbsp;</td>
                 <td>
