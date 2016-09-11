@@ -1,0 +1,21 @@
+.day {
+    width: 900px;
+}
+
+.day__headline {
+    width: 800px;
+    display: inline-block;
+}
+
+.day__tracks {
+    float: left;
+    width: 600px;
+    border: 1px solid black;
+}
+
+.day__statistics {
+    float: left;
+    width: 200px;
+    border: 1px solid green;
+}
+

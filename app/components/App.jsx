@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Tracks from './Tracks.jsx';
+import Day from './Day.jsx';
 
 import days from '../data/data.js';
 
@@ -35,7 +35,7 @@ class App extends React.Component {
   renderDay(date) {
     const day = this.getDayByDate(date);
     if (typeof day[0] !== 'undefined') {
-      return <Tracks day={day[0]} addTrack={this.addTrack} />;
+      return <Day day={day[0]} addTrack={this.addTrack} />;
     }
     return '';
   }
@@ -45,6 +45,8 @@ class App extends React.Component {
         <h1>Timetracker</h1>
         <h2>All Days</h2>
         { this.renderDay(20160908) }
+        { this.renderDay(20160909) }
+        { this.renderDay(20160910) }
       </div>
     );
   }

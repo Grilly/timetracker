@@ -25,10 +25,9 @@ class Tracks extends React.Component {
   }
   render() {
     const { day } = this.props;
-    const { date, tracks } = day;
+    const { tracks } = day;
     return (
-      <div>
-        <h2>{date}</h2>
+      <div className="day__tracks">
         <form onSubmit={this.handleSubmit}>
           <table>
             <thead>

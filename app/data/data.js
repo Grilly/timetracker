@@ -18,8 +18,6 @@ const days = [
       { id: 92, startTime: '12:12', endTime: '13:12', description: 'Beschreibung2' },
       { id: 93, startTime: '12:13', endTime: '13:13', description: 'Beschreibung3' },
       { id: 94, startTime: '12:14', endTime: '13:14', description: 'Beschreibung4' },
-      { id: 95, startTime: '12:15', endTime: '13:15', description: 'Beschreibung5' },
-      { id: 96, startTime: '12:16', endTime: '13:16', description: 'Beschreibung6' },
     ],
   },
   {
@@ -30,7 +28,6 @@ const days = [
       { id: 103, startTime: '12:13', endTime: '13:13', description: 'Beschreibung3' },
       { id: 104, startTime: '12:14', endTime: '13:14', description: 'Beschreibung4' },
       { id: 105, startTime: '12:15', endTime: '13:15', description: 'Beschreibung5' },
-      { id: 106, startTime: '12:16', endTime: '13:16', description: 'Beschreibung6' },
     ],
   },
 ];
