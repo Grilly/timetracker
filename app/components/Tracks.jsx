@@ -6,7 +6,6 @@ class Tracks extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderTrack = this.renderTrack.bind(this);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -20,12 +19,7 @@ class Tracks extends React.Component {
     addTrack(this.props.day.date, newTrack);
     return;
   }
-  renderTrack(index) {
-    return <Track track={this.props.day.tracks[index]} key={index} />;
-  }
   render() {
-    const { day } = this.props;
-    const { tracks } = day;
     return (
       <div className="day__tracks">
         <form onSubmit={this.handleSubmit}>
@@ -40,7 +34,10 @@ class Tracks extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(tracks).map(this.renderTrack)}
+              {
+                this.props.tracks[this.props.day.code].map((track, index) =>
+                  <Track track={track} key={index} />)
+              }
               <tr>
                 <td>&nbsp;</td>
                 <td>
